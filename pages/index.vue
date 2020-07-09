@@ -3,20 +3,22 @@
     Header
     section.sec-1
       .banner
-        img(src="images/logo.svg")
+        img(src="images/logo.svg" )
       .flex-bt.pt-2
-        h3.text-title ALL
-        h3.text-title Trending
+        h2.text-title ALL
+        h2.text-title Trending
       .film-group(class="row columns is-multiline")
         .div(class="column is-4" v-for="films in snapshot")
           nuxt-link.film-item(:to="'/profile?id='+films.id")
             .film-item__head
-              img(src="images/film.jpg")
+              img(data-src="images/film.jpg" v-lazy-load="")
               h5 {{films.release_date }}
             .film-item__body
               h3 {{ films.title }}
               h5 {{films.director }} / {{films.director }}
-              h4.pt-1.ti-heart  {{ films.rt_score }}
+              .scored
+                span.ti-heart  
+                | {{ films.rt_score }}
     
 </template>
 
@@ -47,6 +49,7 @@ export default {
 
                 if (status === 200) {
                     this.snapshot = data;
+                    this.species = data.species;
                 }
           });
         },
@@ -65,10 +68,6 @@ export default {
         width: 100%
         margin: 0 auto
         text-align: center
-        // height: 180px
-        // background-color: #f5f5f5
-        // border: 1px solid #f5f5f5
-        // border-radius: 5px
 
         img 
           width: auto
@@ -81,7 +80,7 @@ export default {
         .film-item 
           margin-top: $gap1
           width: 100%
-          height: 200px
+          height: 230px
           background-color: white
           border-radius: 5px
           display: flex
@@ -90,12 +89,10 @@ export default {
 
           &__head
             width: 40%
-            padding: 10px
-            background-color: #424874
+            background-color: $purple
             border-radius: 5px 0px 0px 5px
 
             h5
-              margin-top: 5px
               color: #fff
               font-size: 16px
               text-align: center
@@ -104,23 +101,29 @@ export default {
               width: 100%
               height: auto
 
+
           &__body
             width: 60%
             padding: $gap1
-            color: #424874
-
+            color: $purple
 
             h3 
               font-weight: 600
               font-size: 18px
-              color: #424874
-              margin-bottom: $gap1
+              color: $purple
 
             h5
               color: #000
 
-            .ti-heart
-              font-weight: 600
+            .scored
+              margin-top: $gap3
+              font-weight: bold
+              font-size: 25px
+
+              .ti-heart
+                font-weight: 700
+                color: red
+                margin-right: 5px
 
     .text-bold
       font-weight: bold

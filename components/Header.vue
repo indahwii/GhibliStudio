@@ -1,11 +1,9 @@
 <template lang="pug">
     .header
         .header-control
-            .child
-                button
-                    span(class="ti-arrow-left" @click="back()")
             .child-center
-                h3.title-admin Studio Ghibli
+                h3.title-admin {{ this.$route.name == "index" ? "Home" : "" }}
+                h3.title-admin {{ this.$route.name == "profile" ? "Detail" : "" }}
 </template>
 
 <script>
@@ -36,7 +34,7 @@ export default {
     width: 100%
     top: 0
     height: 60px
-    background-color: #424874
+    background-color: $purple
     overflow: hidden;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 

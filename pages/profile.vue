@@ -3,13 +3,13 @@
     Header
     section.sec-1
       .banner
-        img(src="images/default-2.jpg")
+        img(data-src="images/default-2.jpg" v-lazy-load="")
       .desc
         h2.title-desc {{ snapshot.title}}
         p.pt-2 {{ snapshot.description }}
       
-      ul(v-for="location in snapshot.locations")
-        li {{ location.name }}
+        h4.text-bold.pt-2 People :
+        span(v-for="people in peoples") {{ people.name }}. 
       
 </template>
 
@@ -24,12 +24,14 @@ export default {
     data() {
       return {
          snapshot: {},
+         peoples: [],
       }
     },
     computed: {
     },
     mounted() {
        this.getSnapshot();
+       this.getPeoples();
     },
     methods: {
         back() {
@@ -43,12 +45,19 @@ export default {
 
                 if (status === 200) {
                     this.snapshot = data;
-                    this.locations = data.locations;
                 }
           });
         },
-        getLocations() {
-          
+        getPeoples() {
+          this.$axios.get("https://ghibliapi.herokuapp.com/people", {
+          })
+          .then(response => {
+                const {status, data} = response;
+
+                if (status === 200) {
+                    this.peoples = data;
+                }
+          });
         }
     }
 }
@@ -63,8 +72,10 @@ export default {
         width: 100%
     .desc
       margin-top: $gap2
+
       .title-desc
-        color: #424874
+        font-weight: 700
+        color: $purple
 
     .text-bold
       font-weight: bold

@@ -23,7 +23,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [{ 
+      src: "https://unpkg.com/vue-lazyload@1.2.6/vue-lazyload.js", body: true,
+     }]
   },
   /*
   ** Global CSS
@@ -57,7 +60,28 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    ['nuxt-lazy-load', {
+      // These are the default values
+      images: true,
+      videos: true,
+      audios: true,
+      iframes: true,
+      polyfill: true,
+      directiveOnly: false,
+      
+      // Default image must be in the static folder
+      defaultImage: '/images/lazy-image.png',
+   
+      // To remove class set value to false
+      loadedClass: 'isLoaded',
+      appendClass: 'lazyLoad',
+      
+      observerConfig: {
+        // See IntersectionObserver documentation
+      }
+    }]
   ],
+  
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
