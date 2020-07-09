@@ -1,15 +1,14 @@
 <template lang="pug">
   .wrapper
     Header
-    section.body
-      carousel.banner(items="1" :nav="false")
-        img(src="images/logo.svg" )
-        img(src="images/1.jpg" )
-        img(src="images/2.jpeg" )
+    section.sec-1
+      .field-search
+        span(class="ti-search")
+        input.input(type="text" name="filter") 
       .flex-bt.pt-2
-        h2.text-title Trending
+        h2.text-title ALL
       .film-group(class="row columns is-multiline")
-        .div(class="column is-4" v-for="films in snapshot.slice(0, 5)")
+        .div(class="column is-4" v-for="films in snapshot")
           nuxt-link.film-item(:to="'/profile?id='+films.id")
             .film-item__head
               img(data-src="images/film.jpg" v-lazy-load="")
@@ -24,14 +23,12 @@
 </template>
 
 <script>
-import carousel from 'v-owl-carousel';
 import Header from '~/components/Header';
 import BottomNav from '~/components/BottomNav';
 
 export default {
     components: {
       Header,
-      carousel,
       BottomNav
     },
     filters: {
@@ -67,24 +64,28 @@ export default {
   @import '~/assets/sass/style.sass'
   
   .wrapper 
-    .owl-theme .owl-nav
-      display: none !important
 
-    .banner
-        width: 100%
-        margin: 0 auto
-        text-align: center
-        padding-top: 10px
-        img 
-          margin: 0 auto
-          width: 95%
-          max-height: 500px
+    .field-search
+        width: 30%
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
+        display: flex
+        border-radius: 30px
+        border: 1px solid #ccc
+        margin-bottom: $gap2
 
-        @media screen and (max-width: $small)
-          img 
+        span
+            padding: $gap2
+        .input
+            margin-right: 15px
+            margin-top: 5px
+            border: none !important
+            box-shadow: none !important
+
+    @media screen and (max-width: $small)
+        .field-search
             width: 100%
-
-
+            
+            
     .film-group 
         .film-item 
           margin-top: $gap1

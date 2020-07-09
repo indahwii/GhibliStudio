@@ -2,8 +2,9 @@
     .header
         .header-control
             .child-center
-                h3.title-admin {{ this.$route.name == "index" ? "Home" : "" }}
-                h3.title-admin {{ this.$route.name == "profile" ? "Detail" : "" }}
+                h3.title-head {{ this.$route.name == "index" ? "Home" : "" }}
+                h3.title-head {{ this.$route.name == "profile" ? "Detail" : "" }}
+                h3.title-head {{ this.$route.name == "search" ? "Search" : "" }}
 </template>
 
 <script>
@@ -36,7 +37,7 @@ export default {
     height: 60px
     background-color: $purple
     overflow: hidden;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 1)
 
     .header-control
         display: flex
@@ -46,9 +47,9 @@ export default {
 
         .child-center
             margin: 0 auto
-            .title-admin
+            .title-head
                 font-size: 22px
-                color: white
+                color: $grey
                 font-weight: 600
 
         button 
