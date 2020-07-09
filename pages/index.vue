@@ -80,7 +80,7 @@ export default {
         .film-item 
           margin-top: $gap1
           width: 100%
-          height: 230px
+          height: 250px
           background-color: white
           border-radius: 5px
           display: flex
@@ -93,6 +93,7 @@ export default {
             border-radius: 5px 0px 0px 5px
 
             h5
+              margin-top: $gap1
               color: #fff
               font-size: 16px
               text-align: center
@@ -100,6 +101,11 @@ export default {
             img 
               width: 100%
               height: auto
+
+            @media screen and (max-width: $small)
+              img 
+                width: 100%
+                height: 190px
 
 
           &__body
