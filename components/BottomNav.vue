@@ -13,8 +13,8 @@ export default {
             navs: [
                 {icon: 'ti-home', title: 'Home', path: '/'},
                 {icon: 'ti-search', title: 'search', path: '/search'},
-                {icon: 'ti-heart', title: 'Favorite', path: '/'},
-                {icon: 'ti-user', title: 'Profile', path: '/'},
+                {icon: 'ti-heart', title: 'Favorite', path: ''},
+                {icon: 'ti-user', title: 'Profile', path: ''},
             ]
         }
     },
